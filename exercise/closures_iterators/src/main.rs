@@ -27,7 +27,7 @@ fn main() {
 
     let mut numbers = vec![1, 2, 3, 4];
     for x in &mut numbers {
-        *x = *x * 3;
+        *x *= 3;
     }
     println!("{:?}", numbers); // should print [3, 6, 9, 12]
 
