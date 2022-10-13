@@ -5,6 +5,12 @@ pub enum Cake {
     Spice,
 }
 
+impl From<&Party> for Cake {
+    fn from(party: &Party) -> Self {
+        party.cake
+    }
+}
+
 #[derive(Debug)]
 pub struct Party {
     pub at_restaurant: bool,
@@ -97,20 +103,23 @@ fn main() {
     // - Implement `From<Party> for Cake` so that the function call below works.
     //
 
-    // smell_cake(party);
+    smell_cake(&party);
 
     // Challenge 2: Implement `From<&Party> for Cake` so that you can smell your cake without
     // consuming it. Change the code above to pass in a &party. Then uncomment and run the code
     // below. After all, you want to smell your cake and eat it, too!
 
-    // println!("Yum! I'm eating this cake: {:?}. Oops, I dropped it on the floor.", party.cake);
-    // drop(cake);
+    println!(
+        "Yum! I'm eating this cake: {:?}. Oops, I dropped it on the floor.",
+        party.cake
+    );
+    drop(cake);
 }
 
 pub fn admire_cake(cake: Cake) {
     println!("What a nice {:?} cake! 🎂", cake);
 }
 
-// pub fn smell_cake<T: Into<Cake>>(something: T) {
-//     println!("Hmm...something smells like a {:?} cake!", something.into());
-// }
+pub fn smell_cake<T: Into<Cake>>(something: T) {
+    println!("Hmm...something smells like a {:?} cake!", something.into());
+}
